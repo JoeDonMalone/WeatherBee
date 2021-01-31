@@ -3,10 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="icon" href="./Assets/Images/logo.jpg"> -->
-    <title>Document</title>
+    <link rel="icon" href="./Assets/Images/thundercloud.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./Develop/style.css">
+    <title>WeatherBee</title>
 </head>
 <body>
-    
+    <header>
+        <h1 class = 'header-h1'>Weather Dashboard</h1>
+    </header>
+
+    <div class = "main-view">
+        <div class = 'search-container' >
+            <div class = 'searchRow'>
+                <label for="seachBar" class = 'search'>Search for a City:</label>
+                <input type="text" id="searchBar">
+                <button> click me</button>
+            </div>
+        </div>
+        <div class = "selected-city-current">Some Items about the current selected City
+            <div class = 'five-day-forecast'></div>
+        </div>
+    </div>
+
+
+
+    <footer>
+        <h3>Supporting images go here</h3>
+    </footer>
 </body>
 </html>
