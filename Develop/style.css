@@ -20,14 +20,41 @@ body {
     display: flex;
     flex-direction: row;
     flex: 1;
-    background-color: blue;
+    background-color: rgb(213, 213, 253);
 }
+
+.selected-city-current {
+    display: flex;
+    flex-flow: column;
+    flex: 1;
+    border-style:solid;
+    border-color:  rgb(204, 203, 203);
+    max-height: 40%;
+}
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    list-style-type: none
+}
+
+.city-name {
+    font-size: 20px;
+    text-emphasis: bold;
+    font-family: 'Crimson Text', serif;
+    font-size: 25px;
+    font-weight: lighter;
+}
+
 .search-container {
     background-color: rgb(240, 240, 240);
     width: 300px;
     height: 100%;
     flex-direction: column;
-    
 }
 
 .searchRow {
