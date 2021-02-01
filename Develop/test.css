@@ -1,0 +1,77 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    background-color: rgb(105, 105, 105);
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: center;
+    font-size: 40px;
+    margin-bottom: 0px;
+    }
+.parent-flex-container-row {
+    display:flex;
+    flex-direction: row;
+    background-color: rgb(240, 240, 240);
+    height: 90vh;
+    width: 100vw;
+    justify-content: space-between;
+}
+ .search-column {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(204, 204, 204);
+    width: 15vw;
+} 
+.searchRow {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.city-details-column {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid  rgb(204, 204, 204);
+    width: 85vw;
+
+}
+
+.selected-city-column {
+    min-height: 70vh;
+    flex-shrink: 1;
+
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    list-style-type: none
+}
+
+.city-name {
+    font-size: 20px;
+    text-emphasis: bold;
+    font-family: 'Crimson Text', serif;
+    font-size: 25px;
+    font-weight: lighter;
+} 
+
+.five-day-forecast-column {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    min-height: 19vh;
+    flex-shrink: 1;
+
+}
+
+footer {
+    height: 10vh;
+}
