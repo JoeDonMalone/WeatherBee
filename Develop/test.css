@@ -19,19 +19,27 @@
     justify-content: space-between;
 }
  .search-column {
-    display: flex;
     flex-direction: column;
     background-color: rgb(204, 204, 204);
-    width: 15vw;
+    flex-basis: 15%;
+    font-family: 'Crimson Text', serif;
+    font-size: 30px;
+    font-weight:600 ;
 } 
+
+.search {
+    flex-basis:100%;
+}
 .searchRow {
-    display:flex;
     flex-direction: row;
+    flex-basis: 100%;
+    min-width: 0;
+    flex-shrink: 1;
+    max-height: 30px;
     flex-wrap: nowrap;
 }
 
 .city-details-column {
-    display: flex;
     flex-direction: column;
     border: 1px solid  rgb(204, 204, 204);
     width: 85vw;
