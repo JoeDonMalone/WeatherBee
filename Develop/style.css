@@ -1,8 +1,3 @@
-body {
-    height: 100vh;
-    margin:0
-  }
-
 .header {
     display: flex;
     flex-direction: row;
@@ -15,64 +10,71 @@ body {
     font-size: 40px;
     margin-bottom: 0px;
     }
-
-.main-view {
-    display: flex;
+.parent-flex-container-row {
+    display:flex;
     flex-direction: row;
-    width: 300px;
-    height: 100%;
     background-color: rgb(240, 240, 240);
-    /* flex-wrap: wrap; */
+    height: 90vh;
+    width: 100vw;
+    justify-content: space-between;
 }
-.container-flex-column {
-    background-color: turquoise;
+ .search-column {
+    flex-direction: column;
+    background-color: rgb(204, 204, 204);
+    flex-basis: 20%;
+    font-family: 'Crimson Text', serif;
+    font-size: 30px;
+    font-weight:600;
+} 
+
+/* .search {
+    flex-basis:100%;
+} */
+.searchRow {
+    flex-direction: row;
+    flex-basis: 100vw;
+    min-width: 0;
+    flex-shrink: 1;
+    margin-bottom: 20px;
+    /* max-height: 30px; */
+    flex-wrap: nowrap;
+}
+
+.recent-searches-parent-container {
     display: flex;
     flex-direction: column;
-    max-width: 80vw;
+    min-height: 80%;
+    flex: 1;
+    flex-direction: column;
 }
-.right-upper {
+
+.recent-searches-child-ul {
     display:flex;
-    width: 600px;
-    background-color:red;
-    /* flex:1 */
-}
-
-.right-lower {
-
-    display:flex;
-    width: 600px;
-    background-color:red;
-    
-}
-
-
-
-
-
-
-
-
-
-
-
-
-/* .container-flex-row {
     flex-direction: row;
-    flex:1 
-} 
+    flex-wrap: wrap;
+    border: 1px solid  rgb(184, 181, 181);
+    min-height: 30vh;
+    align-items: center;
+}
 
-.selected-city-current {
-    display: flex;
-    flex-flow: column;
-    justify-content: space-evenly;
-    flex-grow: 1;
-    border-style:solid;
-    border-color:  rgb(204, 203, 203);
-    max-height: 40%;
-    min-width: 100%;
-} 
+ .recent-city {
+    border: 1px solid  rgb(184, 181, 181);
+    width: 100%;
+    list-style-type: none
+}
 
-ul {
+.city-details-column {
+    border: 1px solid  rgb(204, 204, 204);
+    width: 85vw;
+
+}
+
+.selected-city-column {
+    min-height: 70vh;
+    flex-shrink: 1;
+}
+
+.selected-city-ul{
     display: block;
     list-style-type: disc;
     margin-block-start: 1em;
@@ -91,14 +93,15 @@ ul {
     font-weight: lighter;
 } 
 
-.five-day-forecast {
+.five-day-forecast-column {
     display: flex;
-    flex: 1;
-    align-self: flex-end;
-    justify-content:space-evenly;
-    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    min-height: 19vh;
+    flex-shrink: 1;
+
 }
 
 footer {
-    align-self: flex-start;
-} */
+    height: 10vh;
+}
