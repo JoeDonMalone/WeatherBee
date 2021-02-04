@@ -21,26 +21,54 @@
  .search-column {
     flex-direction: column;
     background-color: rgb(204, 204, 204);
-    flex-basis: 15%;
+    flex-basis: 20%;
     font-family: 'Crimson Text', serif;
     font-size: 30px;
-    font-weight:600 ;
+    font-weight:600;
 } 
 
-.search {
+/* .search {
     flex-basis:100%;
-}
+} */
 .searchRow {
     flex-direction: row;
-    flex-basis: 100%;
+    flex-basis: 100vw;
     min-width: 0;
     flex-shrink: 1;
-    max-height: 30px;
+    margin-bottom: 20px;
+    /* max-height: 30px; */
     flex-wrap: nowrap;
 }
 
-.city-details-column {
+.recent-searches-parent-container {
+    display: flex;
     flex-direction: column;
+    min-height: 80%;
+    flex: 1;
+    flex-direction: column;
+}
+
+.recent-searches-child-ul {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 1px solid  rgb(206, 23, 23);
+    background-color: burlywood;
+    min-height: 30vh;
+    align-items: center;
+
+    /* justify-content: left; */
+    
+    /* justify-content: left; */
+}
+
+ .recent-city {
+    border: 1px solid  rgb(206, 23, 23);
+    width: 100%;
+    list-style-type: none
+}
+
+.city-details-column {
     border: 1px solid  rgb(204, 204, 204);
     width: 85vw;
 
@@ -49,10 +77,9 @@
 .selected-city-column {
     min-height: 70vh;
     flex-shrink: 1;
-
 }
 
-ul {
+.selected-city-ul{
     display: block;
     list-style-type: disc;
     margin-block-start: 1em;
