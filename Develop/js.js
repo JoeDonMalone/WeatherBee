@@ -22,6 +22,7 @@ function initializeRecentSearches () {
     } 
     
 }
+
 $('.recent-city').mouseenter( function() {
     $(this).css("border-bottom", "3px solid rgb(184,181, 181");
 }) 
@@ -40,7 +41,7 @@ document.getElementById('recent-city-ul').addEventListener("click", function(e) 
     console.log(storedRecentSearches);
     // console.log(recentSearches[0][`${childAttribute}`]) // = {'recentSearches':{'city':city, 'state':state}});
     
-    storedRecentSearches.push({childAttribute:{'city':city, 'state':state}});
+    storedRecentSearches.push( `{${childAttribute}: {'city':city, 'state':state}}`);
     console.log(storedRecentSearches);
 
     localStorage.setItem('Recent Searches', JSON.stringify(storedRecentSearches));
