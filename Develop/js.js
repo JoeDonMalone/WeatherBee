@@ -11,7 +11,7 @@ function initializeRecentSearches () {
     if (!recentSearches) {
         let recentSearches = [
             {
-            'recent-search-1':{'city':'some place','state': 'some state'},
+            'recent-search-1':{'city':'','state': ''},
             'recent-search-2':{'city':'','state': ''},
             'recent-search-3':{'city':'','state': ''},
             'recent-search-4':{'city':'','state': ''},
@@ -37,21 +37,20 @@ document.getElementById('recent-city-ul').addEventListener("click", function(e) 
     let city = cityStateArray[0];
     let state = cityStateArray[1];
     weatherFetch(city,state,appid);
-    let storedRecentSearches = JSON.parse(localStorage.getItem('Recent Searches'));
-    console.log(storedRecentSearches);
-    // console.log(recentSearches[0][`${childAttribute}`]) // = {'recentSearches':{'city':city, 'state':state}});
-    
-    storedRecentSearches.push( `{${childAttribute}: {'city':city, 'state':state}}`);
+    let storedRecentSearches = JSON.parse(localStorage.getItem('Recent Searches'));    
+    storedRecentSearches.push( `{${childAttribute}: {'city':${city}, 'state':${state}}}`);
     console.log(storedRecentSearches);
 
     localStorage.setItem('Recent Searches', JSON.stringify(storedRecentSearches));
 });
 
 searchCityButton.addEventListener('click', function() {
-    let searchCity = document.querySelector('#searchBar').value;
-    let cityStateArray = strictFormat([searchCity]);
+    let searchString = document.querySelector('#searchBar').value;
+    let cityStateArray = strictFormat([searchString]);
     let city = cityStateArray[0];
+    console.log(city);
     let state = cityStateArray[1];
+    console.log(state);
    weatherFetch(city,state,appid);
 })
 
@@ -65,18 +64,32 @@ function weatherFetch(city, state,appid) {
 //need to create an independent function that operates with passed city/state/appid params
 function strictFormat(arr) {
     // The user entry needs to be separated and formatted for fetch needs
+//    console.log('passed param: ', arr);
    var newArr = arr[0].split(/(\s+)/);
    // remove any extra spaces that may be surrounding text
-        // need to resolve city names with spaces between them
-   newArr = newArr.filter(function(entry) { return entry.trim() != ''; });
+   newArr = newArr.filter(function(entry) {return entry.trim() != ''; });
+//    console.log('Filtered Arr: ', newArr);
+
    // remove any commas that user may have inadvertently typed
-   var finalArr = [];
+   var strippedArr = [];
    for(let i = 0; i<newArr.length; i++){
        let items = newArr[i].replace(',','');
-       finalArr.push(items);
+       strippedArr.push(items);
    };
+   
+   // Resolve city names with spaces between them
    //return the formatted array for use with fetch function
-   return finalArr;
+   var finalArr = [];
+    for(let i = 0;i<strippedArr.length-1;i++){
+        if(i==0){
+            finalArr.push(strippedArr[0]);
+        } else {
+            let tempItem = finalArr[0]+strippedArr[i];
+            finalArr = [tempItem];
+        }
+    }
+    finalArr.push(strippedArr[(strippedArr.length-1)]);
+    return finalArr;
 }
 
 // Call current weather data for one location:
