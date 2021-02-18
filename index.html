@@ -11,97 +11,98 @@
     <title>WeatherBee</title>
 </head>
 <body>
+<!-- <body class="d-flex flex-column h-100"> -->
     <header class = 'header'>
         <h1 class = 'header-h1'>Weather Dashboard</h1>
     </header>
-
-    <div class = "main-view">
-        <div class = 'search-container left-side' >
+    <section class = 'parent-flex-container-row'>
+        <div class = 'search-column'>
             <div class = 'searchRow'>
-                <label for="seachBar" class = 'search'>Search for a City:</label>
-                <input type="text" id="searchBar">
-                <button> click me</button>
+                <label for="seachBar" class = 'searchInput'>Search for a City:</label>
+                <input type="text" placeholder="City, ST" id="searchBar">
+                <button class = 'city-search-button'> click me</button>
+            </div>
+            <div id = 'recent-city-ul' class = 'recent-searches-parent-container'>
+                <ul class = 'recent-searches-child-ul'>
+                    <li id = 'recent-search-1' class = 'recent-city'>Austin, TX</li>
+                    <li id = 'recent-search-2' class = 'recent-city'>San Francisco, CA</li>
+                    <li id = 'recent-search-3' class = 'recent-city'>City 3</li>
+                    <li id = 'recent-search-4 'class = 'recent-city'>City 4</li>
+                    <li id = 'recent-search-5' class = 'recent-city'>City 5</li>
+                </ul>
+            </div>
+        </div>  
+        <div class = 'city-details-column'>
+            <div class = 'selected-city-column'>
+                <ul class ='selected-city-ul'>
+                    <li class = 'city-name'>
+                        CITY NAME:
+                    </li>
+                    <li class = 'temperature'>
+                        Temperature:
+                    </li>
+                    <li class = 'humidity'>
+                        Humidity:
+                    </li>
+                    <li class = 'wind-speed'>
+                        Wind Speed:
+                    </li>
+                    <li class = 'uv-index'>
+                        UV Index:
+                    </li>
+                </ul>
+            </div>
+            
+            <div class = 'five-day-forecast-row'>
+                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Header</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Primary card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Header</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Primary card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Header</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Primary card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Header</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Primary card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Header</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Primary card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class = 'container-flex-column'>
-            <div class = 'right-upper'></div>
-            <div class = 'right-lower'></div>
-        </div>
+    </section> 
 
-
-    </div>
-
-
-
-    <footer>
-        <h3>Footer Supporting images go here</h3>
-    </footer>
+        <footer class="footer ms-auto py-3 bg-light ">
+            <div class="container">
+            <span class="text-muted">Place sticky footer content here.</span>
+            </div>
+        </footer>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="./Develop/js.js"></script>
+ 
 </body>
 </html>
 
-
-
-<!-- <div class = "selected-city-current">
-    <ul>
-        <li class = 'city-name'>
-            CITY NAME:
-        </li>
-        <li class = 'temperature'>
-            Temperature:
-        </li>
-        <li class = 'humidity'>
-            Humidity:
-        </li>
-        <li class = 'wind-speed'>
-            Wind Speed:
-        </li>
-        <li class = 'uv-index'>
-            UV Index:
-        </li>
-    </ul>
-</div>
-<div class = 'five-day-forecast'>
-    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-            <h5 class="card-title">Primary card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-    </div>
-    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-            <h5 class="card-title">Primary card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-    </div>
-    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-            <h5 class="card-title">Primary card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-    </div>
-    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-            <h5 class="card-title">Primary card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-    </div>
-    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-            <h5 class="card-title">Primary card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-    </div>
-</div> -->
-
-
-
-
-
-  
 
 
