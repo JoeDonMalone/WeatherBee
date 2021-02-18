@@ -22,8 +22,11 @@ function initializeRecentSearches () {
     } 
     
 }
-$('.recent-city').mouseover( function() {
-    console.log( $(this).text());
+$('.recent-city').mouseenter( function() {
+    $(this).css("border-bottom", "3px solid rgb(184,181, 181");
+}) 
+$('.recent-city').mouseleave( function() {
+    $(this).css("border", "1px solid rgb(184,181, 181");
 })
 
 document.getElementById('recent-city-ul').addEventListener("click", function(e) {
