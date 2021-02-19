@@ -5,9 +5,9 @@ var searchCityButton = document.querySelector('.city-search-button');
 
 initializeRecentSearches();
 
+var recentSearches = JSON.parse(localStorage.getItem('Recent Searches'));
 
 function initializeRecentSearches () {
-    let recentSearches = JSON.parse(localStorage.getItem('Recent'));        
     if (!recentSearches) {
         let recentSearches = [
             {
@@ -55,12 +55,24 @@ searchCityButton.addEventListener('click', function() {
    weatherFetch(city,state,country,appid);
 })
 
+function convertToF(kelvin) {
+    let celsius = kelvin-273.15;
+    return (parseInt(celsius) * 9/5 + 32);
+    }
+
+var temp = JSON.parse(localStorage.getItem('apiResponseObject'));
+// console.log(temp.main.temp)
+let fTemp = convertToF(temp.main.temp);
+console.log(fTemp)
+
+
 function weatherFetch(city, state, country,appid) {
     // url = `api.openweathermap.org/data/2.5/weather?q=,,&appid=`;
     let url = `http://api.openweathermap.org/data/2.5/weather?q=${city},${state},${country}&appid=${appid}`
     fetch(url)
         .then(response => response.json())
-        .then(data => localStorage.setItem('apiResponseObject', JSON.stringify(data)))
+        // .then(data => localStorage.setItem('apiResponseObject', JSON.stringify(data)))
+
 }
 
 //need to create an independent function that operates with passed city/state/appid params
