@@ -51,34 +51,31 @@ searchCityButton.addEventListener('click', function() {
     console.log(city);
     let state = cityStateArray[1];
     console.log(state);
-   weatherFetch(city,state,appid);
+    let country = 'USA'
+   weatherFetch(city,state,country,appid);
 })
 
-function weatherFetch(city, state,appid) {
-    console.log(String(`api.openweathermap.org/data/2.5/weather?q=${city},${state}&appid=${appid}`));
-    // fetch()
-    //     .then(response => response.json())
-    //     .then(data => console.log(data));
+function weatherFetch(city, state, country,appid) {
+    // url = `api.openweathermap.org/data/2.5/weather?q=,,&appid=`;
+    let url = `http://api.openweathermap.org/data/2.5/weather?q=${city},${state},${country}&appid=${appid}`
+    fetch(url)
+        .then(response => response.json())
+        .then(data => localStorage.setItem('apiResponseObject', JSON.stringify(data)))
 }
 
 //need to create an independent function that operates with passed city/state/appid params
 function strictFormat(arr) {
     // The user entry needs to be separated and formatted for fetch needs
-//    console.log('passed param: ', arr);
    var newArr = arr[0].split(/(\s+)/);
    // remove any extra spaces that may be surrounding text
    newArr = newArr.filter(function(entry) {return entry.trim() != ''; });
-//    console.log('Filtered Arr: ', newArr);
-
    // remove any commas that user may have inadvertently typed
    var strippedArr = [];
    for(let i = 0; i<newArr.length; i++){
        let items = newArr[i].replace(',','');
        strippedArr.push(items);
    };
-   
-   // Resolve city names with spaces between them
-   //return the formatted array for use with fetch function
+   // Resolve city names with spaces between them & return the formatted array for use with 'fetch' function
    var finalArr = [];
     for(let i = 0;i<strippedArr.length-1;i++){
         if(i==0){
