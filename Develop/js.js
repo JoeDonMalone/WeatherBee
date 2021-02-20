@@ -73,7 +73,7 @@ function currentWeatherFetch(city, state, country,appid) {
     fetch(url)
         .then(response => response.json())
         // .then(data => localStorage.setItem('apiResponseCurrentObject', JSON.stringify(data)))
-        .then(data => assignCurrentWeatherVariable(data));// => localStorage.setItem('apiResponseObject', JSON.stringify(data)))
+        .then(data => assignCurrentWeatherData(data));// => localStorage.setItem('apiResponseObject', JSON.stringify(data)))
 }
 
 function forecastWeatherFetch(city, state, country,appid) {
@@ -82,7 +82,7 @@ function forecastWeatherFetch(city, state, country,appid) {
     fetch(url)
         .then(response => response.json())
         // .then(data => localStorage.setItem('apiResponseFutureObject', JSON.stringify(data)))
-        .then(data => assignFutureWeatherVariable(data));// => localStorage.setItem('apiResponseObject', JSON.stringify(data)))
+        .then(data => assignFutureWeatherData(data));// => localStorage.setItem('apiResponseObject', JSON.stringify(data)))
 }
 
 
@@ -94,26 +94,64 @@ function forecastWeatherFetch(city, state, country,appid) {
 //     return(parseInt(celsius) * 9/5 + 32)
 // }
 
+// function determinIcon (id) {
+//     switch (id) {
+//         case '01d': 
+//           break;
+//         case "02d":
+//           break;
+//         case "03d":
+//           break;
+//         case "04d":
+//           break;
+//         case "09d":
+//           break;
+//         case "10d":
+//           break;
+//         case "11d":
+//           break;
+//         case '13d': 
+//           break;
+//         case "50d":
+//           break;
+//         case "01n":
+//           break;
+//         case "02n":
+//           break;
+//         case "03n":
+//           break;
+//         case "04n":
+//           break;
+//         case "09n":
+//           break;
+//         case '10n':
+//           break;
+//         case "11n":
+//           break;
+//         case "13n":
+//           break;
+//         case "50n":
+//           break;
+//         [default:
+//           //Statements executed when none of
+//           //the values match the value of the expression
+//           break;]
+//       }
+// }
+
 // CURRENT Weather Function//
-function assignCurrentWeatherVariable(response) {
-    // let response = response;
+function assignCurrentWeatherData(response) {
     let cityName = response.name;
+    // let iconimg = repsonse.weather[0].icon;
     let humidity = response.main.humidity;
-    console.log(humidity);
     let windSpeed = response.wind.speed;
-    console.log(windSpeed);
-    // let temperature = convertToF(response.main.temp);
     let temperature = response.main.temp;
+    let imgIcon = response.weather[0].icon;
+    // let holderImgSRC = `http://openweathermap.org/img/wn/${imgIcon}@2x.png`;
     console.log(temperature);
     // let uvIndex= ;
-    // let secondsInDay = 86400;
-    let dayOne = response.dt; 
-    console.log(dayOne);
-    // let dayTwo = dayOne - (86400); 
-    // let dayThree = dayOne - (86400 * 2);
-    // let dayFour = dayOne - (86400 * 3);
-    // let dayFive = dayOne - (86400 * 4);
     $('.city-name').text(`${cityName} (${todayDate})`);
+    $('.city-name').append(`<img src='http://openweathermap.org/img/wn/${imgIcon}@2x.png'>`);
     $('.temperature').text(`Temperature: ${temperature}${String.fromCharCode(176)}F`);
     $('.humidity').text(`Humidity: ${humidity}%`);
     $('.wind-speed').text(`Wind Speed: ${windSpeed} MPH`);
@@ -121,29 +159,47 @@ function assignCurrentWeatherVariable(response) {
 }
 
 // FUTURE WEATHER FORECAST //
-function assignFutureWeatherVariable(response) {
-    // let response = response;
-    let cityName = response.name;
-    let humidity = response.main.humidity;
-    console.log(humidity);
-    let windSpeed = response.wind.speed;
-    console.log(windSpeed);
-    // let temperature = convertToF(response.main.temp);
-    let temperature = response.main.temp;
-    console.log(temperature);
-    // let uvIndex= ;
-    // let secondsInDay = 86400;
-    let dayOne = response.dt; 
-    console.log(dayOne);
-    // let dayTwo = dayOne - (86400); 
-    // let dayThree = dayOne - (86400 * 2);
-    // let dayFour = dayOne - (86400 * 3);
-    // let dayFive = dayOne - (86400 * 4);
-    $('.city-name').text(`${cityName} (${todayDate})`);
-    $('.temperature').text(`Temperature: ${temperature}${String.fromCharCode(176)}F`);
-    $('.humidity').text(`Humidity: ${humidity}%`);
-    $('.wind-speed').text(`Wind Speed: ${windSpeed} MPH`);
-    // $('.uv-index').text(`UV Index: ${cityName}`);
+function assignFutureWeatherData(response) {
+    let dateItemIndex = 5;
+    $('.card ').each( function (i) {
+        if(i==0) {
+            dateItemIndex = 5;
+        } else{
+            dateItemIndex+=8
+        }
+        console.log('Loop Index: ', i, 'Card Index: ', dateItemIndex);
+        let date = moment().add(i+1, 'days').format('M/D/YYYY');
+        let temperature = response.list[dateItemIndex].main.temp;
+        let humidity = response.list[i].main.humidity;
+        let imgIcon = response.list[dateItemIndex].weather[0].icon;
+
+
+        $(this).find('.future-date').text(date);
+        $(this).find('.future-outlook-image').append(`<img src='http://openweathermap.org/img/wn/${imgIcon}@2x.png'>`)
+        // $(this).find().text(response.list[5].weather[0].icon); //Future forecast Image... sunny/cloudy/rainy
+        $(this).find('.future-temperature').text(`Temperature: ${temperature}${String.fromCharCode(176)}F`); 
+        $(this).find('.future-humidity').text(`Humidity: ${humidity}%`); 
+        
+
+        // $(this).find('.card-text').text(todayDate);
+    })
+
+
+    // for(let i = 5;i<=45; i+8){
+    //     
+    //     
+    //     // let secondsInDay = 86400;
+    //     let dayOne = response.list[5];
+    //     // let dayTwo = dayOne - (86400); 
+    //     // let dayThree = dayOne - (86400 * 2);
+    //     // let dayFour = dayOne - (86400 * 3);
+    //     // let dayFive = dayOne - (86400 * 4);
+    //     $('.city-name').text(`${cityName} (${todayDate})`);
+    //     $('.temperature').text(`Temperature: ${temperature}${String.fromCharCode(176)}F`);
+    //     $('.humidity').text(`Humidity: ${humidity}%`);
+    //     $('.wind-speed').text(`Wind Speed: ${windSpeed} MPH`);
+    //     // $('.uv-index').text(`UV Index: ${cityName}`);
+    // }
 }
 
 //need to create an independent function that operates with passed city/state/appid params

@@ -12,9 +12,9 @@
 </head>
 <body>
 <!-- <body class="d-flex flex-column h-100"> -->
-    <header class = 'header'>
-        <h1 class = 'header-h1'>Weather Dashboard</h1>
-    </header>
+    < class = ''>
+        <h1 class = '-h1'>Weather Dashboard</h1>
+    </>
     <section class = 'parent-flex-container-row'>
         <div class = 'search-column'>
             <div class = 'searchRow'>
@@ -35,58 +35,53 @@
         <div class = 'city-details-column'>
             <div class = 'selected-city-column'>
                 <ul class ='selected-city-ul'>
-                    <li class = 'city-name'>
-                        CITY NAME:
-                    </li>
-                    <li class = 'temperature'>
-                        Temperature:
-                    </li>
-                    <li class = 'humidity'>
-                        Humidity:
-                    </li>
-                    <li class = 'wind-speed'>
-                        Wind Speed:
-                    </li>
-                    <li class = 'uv-index'>
-                        UV Index:
-                    </li>
+                    <li class = 'city-name'></li>
+                    <li class = 'temperature'></li>
+                    <li class = 'humidity'></li>
+                    <li class = 'wind-speed'></li>
+                    <li class = 'uv-index'></li>
                 </ul>
             </div>
             
             <div class = 'five-day-forecast-row'>
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
+                <div id = 'day-1' class="card text-white bg-primary mb-5" style="max-width: 18rem;">
+                    <div class="future-date"></div>
                     <div class="card-body">
-                        <h5 class="card-title">Primary card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="future-outlook-image"></h5>
+                        <h5 class="future-temperature"></h5>                       
+                        <h5 class="future-humidity"></h5>                       
                     </div>
                 </div>
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
+                <div id = 'day-2' class="card text-white bg-primary mb-5" style="max-width: 18rem;">
+                    <div class="future-date"></div>
                     <div class="card-body">
-                        <h5 class="card-title">Primary card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="future-outlook-image"></h5>
+                        <h5 class="future-temperature"></h5>  
+                        <h5 class="future-humidity"></h5>  
                     </div>
                 </div>
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
+                <div id = 'day-3' class="card text-white bg-primary mb-5" style="max-width: 18rem;">
+                    <div class="future-date"></div>
                     <div class="card-body">
-                        <h5 class="card-title">Primary card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="future-outlook-image"></h5>
+                        <h5 class="future-temperature"></h5>  
+                        <h5 class="future-humidity"></h5>  
                     </div>
                 </div>
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
+                <div id = 'day-4' class="card text-white bg-primary mb-5" style="max-width: 18rem;">
+                    <div class="future-date"></div>
                     <div class="card-body">
-                        <h5 class="card-title">Primary card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="future-outlook-image"></h5>
+                        <h5 class="future-temperature"></h5> 
+                        <h5 class="future-humidity"></h5> 
                     </div>
                 </div>
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
+                <div id = 'day-5' class="card text-white bg-primary mb-5" style="max-width: 18rem;">
+                    <div class="future-date"></div>
                     <div class="card-body">
-                        <h5 class="card-title">Primary card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="future-outlook-image"></h5>
+                        <h5 class="future-temperature"></h5>
+                        <h5 class="future-humidity"></h5>
                     </div>
                 </div>
             </div>
