@@ -34,6 +34,7 @@ header {
     border-radius: 10px;
     margin: 5px;
     font-weight:400;
+    /* flex-basis: 20; */
     /* opacity: .9; */
 }
 
@@ -68,22 +69,22 @@ margin-top: 10px;
     flex-direction: column;
     min-width: 100%;
     align-content: center;
+    /* flex-basis: 2; */
 } 
 
 ul {
-display: flex;
-flex-direction: column;
-list-style-type: none;
-margin-left:-25px;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    margin-left:-25px;
 }
 
 .recent-city {
-border-bottom: 1px solid  rgb(184, 181, 181);
-border-radius: 4px;
-min-width: 100%;
-min-height: 40px;
-/* flex-basis: 0; */
-flex-grow: 1;
+    border-bottom: 1px solid  rgb(184, 181, 181);
+    border-radius: 4px;
+    min-width: 100%;
+    min-height: 40px;
+    flex-grow: 1;
 }
 
 .city-details-column {
@@ -105,7 +106,7 @@ border-bottom: 1px solid gray;
 border-radius: 10px;
 margin: 10px;
 align-items: flex-start;
-flex:1;
+/* flex:1; */
 /* flex-basis: 1; */
 }
 
@@ -142,15 +143,3 @@ flex:1;
     max-width: 100%;
     padding: 0 15px;
   }
-
-  /* NEW CSS FROM JS FIDDLE */
-
-
-  
-  /* 
-  
- 
-  
- */
-  
-
