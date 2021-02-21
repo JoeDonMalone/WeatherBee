@@ -13,9 +13,6 @@ initializeRecentSearches();
 assignRecentSearches();
 
 
-
-
-
 function initializeRecentSearches () {
   let recentSearches = JSON.parse(localStorage.getItem('Recent Searches'));  
     if (!recentSearches) {
@@ -58,9 +55,7 @@ function initializeLastSearch(){
     let country = 'USA';
     currentWeatherFetch(city,state,country);
     forecastWeatherFetch(city,state,country);
-
 }
-
 
 $('.recent-city').mouseenter( function() {
     $(this).css("border-bottom", "3px solid rgb(184,181, 181");
@@ -68,7 +63,6 @@ $('.recent-city').mouseenter( function() {
 $('.recent-city').mouseleave( function() {
     $(this).css("border", "1px solid rgb(184,181, 181");
 })
-
 
 //   Recent Search Functions
 document.getElementById('recent-city-ul').addEventListener("click", function(e) {
@@ -103,7 +97,7 @@ searchCityButton.addEventListener('click', function() {
 
 function currentWeatherFetch(city, state, country) {
     // url = `api.openweathermap.org/data/2.5/weather?q=,,&appid=`;
-    let url = `http://api.openweathermap.org/data/2.5/weather?q=${city},${state},${country}&units=imperial&appid=${currentId}`
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${state},${country}&units=imperial&appid=${currentId}`
     fetch(url)
         .then(response => response.json())
         // .then(data => localStorage.setItem('apiResponseCurrentObject', JSON.stringify(data)))
@@ -113,7 +107,7 @@ function currentWeatherFetch(city, state, country) {
 
 function forecastWeatherFetch(city, state, country) {
     // url = `api.openweathermap.org/data/2.5/weather?q=,,&appid=`;
-    let url = `http://api.openweathermap.org/data/2.5/forecast?q=${city},${state},${country}&cnt=48&units=imperial&appid=${forecastId}`
+    let url = `https://api.openweathermap.org/data/2.5/forecast?q=${city},${state},${country}&cnt=48&units=imperial&appid=${forecastId}`
     fetch(url)
         .then(response => response.json())
         // .then(data => localStorage.setItem('apiResponseFutureObject', JSON.stringify(data)))
@@ -122,7 +116,7 @@ function forecastWeatherFetch(city, state, country) {
 
 function UVFetch(lat,lon) {
     // url = `api.openweathermap.org/data/2.5/weather?q=,,&appid=`;
-    let url = `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${uvId}`
+    let url = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${uvId}`
     fetch(url)
         .then(response => response.json())
         // .then(data => localStorage.setItem('UVIndexObject', JSON.stringify(data)));
