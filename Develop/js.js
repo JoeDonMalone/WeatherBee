@@ -99,17 +99,7 @@ function UVFetch(lat,lon) {
 
 // Decoded Items from API Response
 
-// function determinIcon (id) {
-//     switch (id) {
-//         case '01d': 
-//           break;
-//         case "02d":
-//           break;
-//         case "03d":
-//           break;
-//         case "04d":
-//       }
-// }
+
 
 // CURRENT Weather Function//
 function assignCurrentWeatherData(response) {
@@ -130,11 +120,56 @@ function assignCurrentWeatherData(response) {
     // 
 }
 
+function determineIcon(indexRating) {
+    var color;
+    switch (indexRating) {
+        case 'Low':
+            color = '#279601';
+        console.log('low')
+            break;
+        case "Moderate":
+            color = '#f7e400';
+          break;
+        case "High":
+            color = '#f95902';
+        console.log('high')
+          break;
+        case "Very High":
+            color = "#d90112";
+        console.log('veryHigh')
+            break;
+        case "Extreme":
+            color = '#6c48cb';
+        indexRating = 'Extreme';
+            break;
+      }
+      console.log('det')
+    return(color);
+}
 // UV Data Function 
 
 function assignUVData(response) {
     let uvIndex = response.value;
-    $('.uv-index').text(`UV Index: ${uvIndex}`);
+    var bgColor;
+
+  
+    if(uvIndex >=0 && uvIndex <=2.99) {
+        console.log('yes')
+        bgColor = '#279601';
+    } 
+    else if(uvIndex >=3 && uvIndex<=5.99 ) {
+        bgColor = '#f7e400';
+    } 
+    else if(uvIndex >=6.00 && uvIndex<=7.99) {
+        bgColor = '#f95902';
+    } 
+    else if(uvIndex >=8 && uvIndex<=10.99) {
+        bgColor = '#d90112';
+    } else if(uvIndex>11) {
+        bgColor = '#6c48cb';
+    } 
+    // bgColor = determineIcon(indexRating)
+    $('#uv-index').text(`${uvIndex}`).css('background-color', bgColor);
 }
 
 // FUTURE WEATHER FORECAST //

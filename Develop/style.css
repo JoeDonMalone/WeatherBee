@@ -142,6 +142,9 @@ img {
     width: 50px;
     height: 50px;
 }
+/* #uv-index {
+    background-color: red;
+} */
 .card{
     display: flex;
     flex-wrap: wrap;
