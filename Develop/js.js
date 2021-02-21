@@ -10,25 +10,57 @@ var todayDate = moment().format('M/D/YYYY');
 
 
 initializeRecentSearches();
+assignRecentSearches();
+
+
 
 
 
 function initializeRecentSearches () {
   let recentSearches = JSON.parse(localStorage.getItem('Recent Searches'));  
     if (!recentSearches) {
-        let recentSearches = [
-            {
-            'search':{'city':'','state': ''},
-            'search':{'city':'','state': ''},
-            'search':{'city':'','state': ''},
-            'search':{'city':'','state': ''},
-            'search':{'city':'','state': ''},
-            }
-        ]
+        let recentSearches = [];
         localStorage.setItem('Recent Searches', JSON.stringify(recentSearches));
-    } 
-    
+        var storedRecentSearches = JSON.parse(localStorage.getItem('Recent Searches')); 
+        for(let i = 0;i<5;i++){
+        storedRecentSearches.push({'search':{'city':'None','state': 'None'}})
+        localStorage.setItem('Recent Searches', JSON.stringify(storedRecentSearches));
+        }
+    } else { 
+        initializeLastSearch();
+    }
+
 }
+
+function assignRecentSearches () {
+    let recentSearches = JSON.parse(localStorage.getItem('Recent Searches'));
+    $('.recent-city').each(function (i) {
+    let li = (recentSearches.length-(i+1));
+    let item = recentSearches[li]['search'];
+    let city = item.city.toUpperCase();
+    let state = item.state.toUpperCase();
+    if(city === "NONE") {
+        $(this).addClass('hidden');
+    } else {
+        $(this).text(`${city}, ${state}`);
+        $(this).addClass('visible');
+    }    
+    })
+}
+
+function initializeLastSearch(){
+    let searches = JSON.parse(localStorage.getItem('Recent Searches'));
+    searchItem = searches.length-1;
+    console.log(searches[searches.length-1])
+    let item = searches[searchItem]['search'];
+    let city = item.city.toUpperCase();
+    let state = item.state.toUpperCase();
+    let country = 'USA';
+    currentWeatherFetch(city,state,country);
+    forecastWeatherFetch(city,state,country);
+
+}
+
 
 $('.recent-city').mouseenter( function() {
     $(this).css("border-bottom", "3px solid rgb(184,181, 181");
@@ -41,17 +73,17 @@ $('.recent-city').mouseleave( function() {
 //   Recent Search Functions
 document.getElementById('recent-city-ul').addEventListener("click", function(e) {
     let searchCity = (e.target.innerHTML)
-    // var childAttribute = (e.target.getAttribute('id'))
     let cityStateArray = strictFormat([searchCity]);
     let city = cityStateArray[0];
     let state = cityStateArray[1];
-    currentWeatherFetch(city,state,appid);
+    let country = 'USA';
+    currentWeatherFetch(city,state,country);
+    forecastWeatherFetch(city,state,country);
     let storedRecentSearches = JSON.parse(localStorage.getItem('Recent Searches'));    
     storedRecentSearches.push( {'search': {'city': city, 'state':state}});
     localStorage.setItem('Recent Searches', JSON.stringify(storedRecentSearches));
+    assignRecentSearches();
 });
-// let storedRecentSearches = JSON.parse(localStorage.getItem('Recent Searches'));
-
 
 // Active Search Functions
 searchCityButton.addEventListener('click', function() {
@@ -66,8 +98,8 @@ searchCityButton.addEventListener('click', function() {
     let storedSearches = JSON.parse(localStorage.getItem('Recent Searches'));
     storedSearches.push({'search': {"city":city , "state":state }})
     localStorage.setItem('Recent Searches', JSON.stringify(storedSearches));
+    assignRecentSearches();
 })
-
 
 function currentWeatherFetch(city, state, country) {
     // url = `api.openweathermap.org/data/2.5/weather?q=,,&appid=`;
@@ -75,7 +107,8 @@ function currentWeatherFetch(city, state, country) {
     fetch(url)
         .then(response => response.json())
         // .then(data => localStorage.setItem('apiResponseCurrentObject', JSON.stringify(data)))
-        .then(data => assignCurrentWeatherData(data));// => localStorage.setItem('apiResponseObject', JSON.stringify(data)))
+        .then(data => assignCurrentWeatherData(data))// => localStorage.setItem('apiResponseObject', JSON.stringify(data)))
+            // .then(data => console.log(data[0]));// => localStorage.setItem('apiResponseObject', JSON.stringify(data)))
 }
 
 function forecastWeatherFetch(city, state, country) {
@@ -120,55 +153,20 @@ function assignCurrentWeatherData(response) {
     // 
 }
 
-function determineIcon(indexRating) {
-    var color;
-    switch (indexRating) {
-        case 'Low':
-            color = '#279601';
-        console.log('low')
-            break;
-        case "Moderate":
-            color = '#f7e400';
-          break;
-        case "High":
-            color = '#f95902';
-        console.log('high')
-          break;
-        case "Very High":
-            color = "#d90112";
-        console.log('veryHigh')
-            break;
-        case "Extreme":
-            color = '#6c48cb';
-        indexRating = 'Extreme';
-            break;
-      }
-      console.log('det')
-    return(color);
-}
 // UV Data Function 
 
 function assignUVData(response) {
     let uvIndex = response.value;
     var bgColor;
-
-  
     if(uvIndex >=0 && uvIndex <=2.99) {
-        console.log('yes')
         bgColor = '#279601';
-    } 
-    else if(uvIndex >=3 && uvIndex<=5.99 ) {
+    } else if(uvIndex >=3 && uvIndex<=5.99 ) {
         bgColor = '#f7e400';
-    } 
-    else if(uvIndex >=6.00 && uvIndex<=7.99) {
+    } else if(uvIndex >=6 && uvIndex<=7.99) {
         bgColor = '#f95902';
-    } 
-    else if(uvIndex >=8 && uvIndex<=10.99) {
+    } else if(uvIndex >=8 && uvIndex<=10.99) {
         bgColor = '#d90112';
-    } else if(uvIndex>11) {
-        bgColor = '#6c48cb';
-    } 
-    // bgColor = determineIcon(indexRating)
+    } else if(uvIndex>11) {bgColor = '#6c48cb';}
     $('#uv-index').text(`${uvIndex}`).css('background-color', bgColor);
 }
 
@@ -218,13 +216,3 @@ function strictFormat(arr) {
     finalArr.push(strippedArr[(strippedArr.length-1)]);
     return finalArr;
 }
-
-
-
-// Call current weather data for one location:
-    //    api.openweathermap.org/data/2.5/weather?q={city name},{state code}&appid={API key}
-        // Must have both cityName and State code as query strings
-//Call for UV Index 
-       // http://api.openweathermap.org/data/2.5/uvi/forecast?lat={lat}&lon={lon}&cnt={cnt}&appid={API key}
-//Call for xxx day forecast, depenedant on # of days selected
-    // api.openweathermap.org/data/2.5/forecast/daily?q={city name},{state code},{country code}&cnt=5&appid={API key}
