@@ -4,7 +4,7 @@ var forecastId = "3b717d16ab57a50678ca7fae8c164d47";
 var uvId = "11f57e252bb7a083db68891139310d99";
 var stateCodes = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY' ];
 var searchCityButton = document.querySelector('.city-search-button');
-var todayDate = moment().format('M/D/YYYY');
+var todayDate = moment().format('ddd D');
 // console.log(todayDate);
 
 
@@ -48,7 +48,6 @@ function assignRecentSearches () {
 function initializeLastSearch(){
     let searches = JSON.parse(localStorage.getItem('Recent Searches'));
     searchItem = searches.length-1;
-    console.log(searches[searches.length-1])
     let item = searches[searchItem]['search'];
     let city = item.city.toUpperCase();
     let state = item.state.toUpperCase();
@@ -58,18 +57,21 @@ function initializeLastSearch(){
 }
 
 $('.recent-city').mouseenter( function() {
-    $(this).css("border-bottom", "3px solid rgb(184,181, 181");
+    // $(this).css("border-bottom", "3px solid rgb(184,181, 181");
+    $(this).css("border-bottom", "3px solid White");
 }) 
 $('.recent-city').mouseleave( function() {
-    $(this).css("border", "1px solid rgb(184,181, 181");
+    // $(this).css("border", "1px solid rgb(184,181, 181");
+    $(this).css("border", "1px solid white");
 })
 
 //   Recent Search Functions
-document.getElementById('recent-city-ul').addEventListener("click", function(e) {
-    let searchCity = (e.target.innerHTML)
+$(".recent-city").click( function(e) {
+    let searchCity = $(this).text();
+    console.log(searchCity)
     let cityStateArray = strictFormat([searchCity]);
-    let city = cityStateArray[0];
-    let state = cityStateArray[1];
+    let city = cityStateArray[0].toLowerCase();
+    let state = cityStateArray[1].toLowerCase();
     let country = 'USA';
     currentWeatherFetch(city,state,country);
     forecastWeatherFetch(city,state,country);
@@ -106,8 +108,7 @@ function currentWeatherFetch(city, state, country) {
 }
 
 function forecastWeatherFetch(city, state, country) {
-    // url = `api.openweathermap.org/data/2.5/weather?q=,,&appid=`;
-    let url = `https://api.openweathermap.org/data/2.5/forecast?q=${city},${state},${country}&cnt=48&units=imperial&appid=${forecastId}`
+    let url = `https://api.openweathermap.org/data/2.5/forecast?q=${city},${state},${country}&cnt=56&units=imperial&appid=${forecastId}`
     fetch(url)
         .then(response => response.json())
         // .then(data => localStorage.setItem('apiResponseFutureObject', JSON.stringify(data)))
@@ -140,8 +141,8 @@ function assignCurrentWeatherData(response) {
     UVFetch(lat,lon);
 
     $('.city-name').text(`${cityName} (${todayDate})`);
-    $('.city-name').append(`<img src='http://openweathermap.org/img/wn/${imgIcon}@2x.png' class = 'current-img'>`);//
-    $('.temperature').text(`Temperature: ${temperature}${String.fromCharCode(176)}F`);
+    $('.city-name').append(`<img src='https://openweathermap.org/img/wn/${imgIcon}@2x.png' class = 'current-img'>`);//
+    $('.temperature').text(`${temperature} ${String.fromCharCode(176)}F`);
     $('.humidity').text(`Humidity: ${humidity}%`);
     $('.wind-speed').text(`Wind Speed: ${windSpeed} MPH`);
     // 
@@ -173,14 +174,14 @@ function assignFutureWeatherData(response) {
         } else{ dateItemIndex+=8
         }
 
-        let date = moment().add(i+1, 'days').format('M/D/YYYY');
+        let date = moment().add(i+1, 'days').format('ddd D');
         let temperature = response.list[dateItemIndex].main.temp;
         let humidity = response.list[i].main.humidity;
         let imgIcon = response.list[dateItemIndex].weather[0].icon;
 
         $(this).find('.future-date').text(date);
-        $(this).find('img').attr('src', `http://openweathermap.org/img/wn/${imgIcon}@2x.png`).css("visibility", "visible")
-        $(this).find('.future-temperature').text(`Temperature: ${temperature}${String.fromCharCode(176)}F`); 
+        $(this).find('img').attr('src', `https://openweathermap.org/img/wn/${imgIcon}@2x.png`).css("visibility", "visible")
+        $(this).find('.future-temperature').text(`${temperature} ${String.fromCharCode(176)}F`); 
         $(this).find('.future-humidity').text(`Humidity: ${humidity}%`); 
     })
 }

@@ -2,24 +2,31 @@ body, html {
     margin: 0;
     height: 100%;
     font-family: 'Varela Round', sans-serif;
+    
+    
   }
 
 header {
     display: flex;
-    background-color: rgb(105, 105, 105);
     color: white;
     justify-content: center;
     align-items: center;
     min-height: 10vh;
-    background-color: rgb(105, 105, 105);
+    background-color: rgb(71, 70, 70);
+}
+
+#weatherBee {
+    width: 50px;
+    height: 50px;
+    /* visibility: visible; */
+    background: transparent;
 }
 
 .parent-flex-container-row {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    background-color: lightblue;
-    /* rgb(240, 240, 240); */
+    background-image: url(../Assets/Images/cumulus-cloud.jpg);
     min-height: 100%;
     justify-content: space-between;
   }
@@ -28,14 +35,16 @@ header {
     display: flex;
     flex-direction: column;
     background-color: rgb(204, 204, 204);
-    flex-basis: 300px;
+    max-width: fit-content;
+    /* flex-basis: 300px; */
     flex-grow: 1;
-    border: 1px solid gray;
+    height: fit-content;
+    /* border: 1px solid white; */
+    border: 1px solid white;
     border-radius: 10px;
     margin: 5px;
     font-weight:400;
-    /* flex-basis: 20; */
-    /* opacity: .9; */
+    opacity: .8;
 }
 
 .searchRow {
@@ -43,11 +52,19 @@ header {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-    border-bottom: .5px dotted gray;
+    border-bottom: .5px dotted white;
     margin-bottom: 10px;
     min-width: 100%;
+    opacity: .8;
 } 
-
+h3 {
+    display: flex row;
+    border-bottom: 1px solid black;
+    max-height: 45px;
+    margin: 5px;
+    flex: 1;
+    align-self: center;
+}
 label {
     font-size: 16pt;
   }
@@ -58,10 +75,14 @@ input {
 
 button {
     border-radius: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 #searchBar {
 margin-bottom: 10px;
 margin-top: 10px;
+margin-left: 5px;
+margin-right: 5px;
 }
 
 .recent-searches-parent-container {
@@ -75,9 +96,9 @@ margin-top: 10px;
 ul {
     display: flex;
     flex-direction: column;
-    /* flex-direction: column-reverse; */
     list-style-type: none;
     margin-left:-25px;
+    font-size: 20pt;
 }
 
 .recent-searches-child-ul {
@@ -88,44 +109,50 @@ ul {
 }
 
 .recent-city {
-    
     border-bottom: 1px solid  rgb(184, 181, 181);
     border-radius: 4px;
     min-width: 100%;
     min-height: 40px;
     flex-grow: 1;
+    font-size: 14pt;
 }
 
 .city-details-column {
     display: flex;
     flex-direction: column;
     background-color: rgb(204, 204, 204);
-    border: 1px solid gray;
+    border: 1px solid white;
     border-radius: 10px;
     margin: 5px;
     flex-grow: 1;
-    flex-shrink: 1;
-    /* flex-basis: 1; */
+    flex-shrink: 0;
+    flex-basis: 300px;
+    opacity: .8;
 }
 
 .selected-city-column {
 display: flex;
 flex-direction: column;
-border-bottom: 1px solid gray;
+color: white;
+background-color: #0d6efd;
+border-bottom: 1px solid white;
 border-radius: 10px;
 margin: 10px;
-align-items: flex-start;
+align-items: center;
 /* flex:1; */
 /* flex-basis: 1; */
 }
 
 .city-name, .future-date {
-    font-size: 20px;
     text-emphasis: bold;
     /* font-family: 'Crimson Text', serif; */
-    font-size: 25px;
+    font-size: 24px;
     font-weight: 400;
-} 
+}
+
+.temperature {
+    font-size: 40pt;
+}
 
 .city-name {
     display: inline;
@@ -135,21 +162,22 @@ align-items: flex-start;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    border: 1px solid rgb(204, 204, 204);
+    /* border-top: 1px solid rgb(185 182 182);
+    border-radius: 10px; */
     margin: 10px;
   }
 
-img {
+.five-day-img {
     display: inline;
     visibility: hidden;
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
 }
 .current-img {
     display: inline;
     visibility: visible;
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
 }
 
 .hidden {
@@ -171,6 +199,10 @@ img {
     /* flex-grow: 1; */
     flex-shrink: 1;
     /* max-height: 100px; */
+}
+
+.card-body {
+    text-align-last: center;
 }
 
 .container {

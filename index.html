@@ -13,16 +13,18 @@
 <body>
 <!-- <body class="d-flex flex-column h-100"> -->
     <header class = 'header'>
-        <h1 class = '-h1'>Weather Dashboard</h1>
+        <img src="./Assets/Images/WeatherBee.png" alt="" id = 'weatherBee' style="background-color: black;">
+        <h1 class = '-h1'>WeatherBee</h1>
     </header>
     <section class = 'parent-flex-container-row'>
         <div class = 'search-column'>
             <div class = 'searchRow'>
                 <label for="seachBar" class = 'searchInput'>Search for a City:</label>
                 <input type="text" placeholder="City, ST" id="searchBar">
-                <button class = 'city-search-button'> click me</button>
+                <button class = 'city-search-button'> Search</button>
             </div>
             <div id = 'recent-city-ul' class = 'recent-searches-parent-container'>
+                <h3 id = "most-recent-searches-section"> Most Recent Searches</h1>
                 <ul class = 'recent-searches-child-ul'>
                     <li id = 'recent-search-1' class = 'recent-city'></li>
                     <li id = 'recent-search-2' class = 'recent-city'></li>
@@ -33,7 +35,9 @@
             </div>
         </div>  
         <div class = 'city-details-column'>
+            
             <div class = 'selected-city-column'>
+                <!-- <h3>Current Weather Conditions</h3> -->
                 <ul class ='selected-city-ul'>
                     <li class = 'city-name'></li>
                     <li class = 'temperature'></li>
@@ -44,12 +48,13 @@
                     </li>
                 </ul>
             </div>
+            <h3 id = 'five-day-forecast-section'> Five Day Forecast</h3>
             <div class = 'five-day-forecast-row'>
                 <div id = 'day-1' class="card text-white bg-primary mb-5" style="max-width: 18rem;">
                     <div class="future-date"></div>
                     <div class="card-body">
                         <h5 class="future-outlook-image">
-                            <img src='#'>
+                            <img src='#' class = "five-day-img">
                         </h5>
                         <h5 class="future-temperature"></h5>                       
                         <h5 class="future-humidity"></h5>                       
@@ -58,7 +63,7 @@
                 <div id = 'day-2' class="card text-white bg-primary mb-5" style="max-width: 18rem;">
                     <div class="future-date"></div>
                     <div class="card-body">
-                        <h5 class="future-outlook-image"><img src='#'></h5>
+                        <h5 class="future-outlook-image"><img src='#' class = "five-day-img"></h5>
                         <h5 class="future-temperature"></h5>  
                         <h5 class="future-humidity"></h5>  
                     </div>
@@ -66,7 +71,7 @@
                 <div id = 'day-3' class="card text-white bg-primary mb-5" style="max-width: 18rem;">
                     <div class="future-date"></div>
                     <div class="card-body">
-                        <h5 class="future-outlook-image"><img src='#'></h5>
+                        <h5 class="future-outlook-image"><img src='#' class = "five-day-img"></h5>
                         <h5 class="future-temperature"></h5>  
                         <h5 class="future-humidity"></h5>  
                     </div>
@@ -74,7 +79,7 @@
                 <div id = 'day-4' class="card text-white bg-primary mb-5" style="max-width: 18rem;">
                     <div class="future-date"></div>
                     <div class="card-body">
-                        <h5 class="future-outlook-image"><img src='#'></h5>
+                        <h5 class="future-outlook-image"><img src='#' class = "five-day-img"></h5>
                         <h5 class="future-temperature"></h5> 
                         <h5 class="future-humidity"></h5> 
                     </div>
@@ -82,7 +87,7 @@
                 <div id = 'day-5' class="card text-white bg-primary mb-5" style="max-width: 18rem;">
                     <div class="future-date"></div>
                     <div class="card-body">
-                        <h5 class="future-outlook-image"><img src='#'></h5>
+                        <h5 class="future-outlook-image"><img src='#' class = "five-day-img"></h5>
                         <h5 class="future-temperature"></h5>
                         <h5 class="future-humidity"></h5>
                     </div>
@@ -91,11 +96,11 @@
         </div>
     </section> 
 
-    <footer class="footer ms-auto py-3 bg-light ">
+    <!-- <footer class="footer ms-auto py-3 bg-light ">
         <div class="container">
         <span class="text-muted">Place sticky footer content here.</span>
         </div>
-    </footer>
+    </footer> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
