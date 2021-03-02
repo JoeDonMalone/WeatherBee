@@ -7,11 +7,23 @@ var searchCityButton = document.querySelector('.city-search-button');
 var todayDate = moment().format('ddd D');
 // console.log(todayDate);
 
-
-
 initializeRecentSearches();
 assignRecentSearches();
 
+function helloModal(){
+    var myModalButton ='<button type="button" class="btn btn-primary hello-modal-button" data-bs-toggle="modal" data-bs-target="#helloModal"></button>';
+    $("body").append(myModalButton);
+    $('.btn').click();
+    $('.hello-modal-button').remove();
+
+}
+
+function errorModal(){
+    var errorModalButton ='<button type="button" class="btn btn-primary error-modal-button" data-bs-toggle="modal" data-bs-target="#errorModal"></button>';
+    $("body").append(errorModalButton);
+    $('.btn').click();
+    $('.error-modal-button').remove();
+}
 
 function initializeRecentSearches () {
   let recentSearches = JSON.parse(localStorage.getItem('Recent Searches'));  
@@ -23,8 +35,11 @@ function initializeRecentSearches () {
         storedRecentSearches.push({'search':{'city':'None','state': 'None'}})
         localStorage.setItem('Recent Searches', JSON.stringify(storedRecentSearches));
         }
+        helloModal();
     } else { 
         initializeLastSearch();
+        
+
     }
 
 }
@@ -66,7 +81,7 @@ $('.recent-city').mouseleave( function() {
 })
 
 //   Recent Search Functions
-$(".recent-city").click( function(e) {
+$(".recent-city").click(function(e) {
     let searchCity = $(this).text();
     console.log(searchCity)
     let cityStateArray = strictFormat([searchCity]);
@@ -110,9 +125,16 @@ function currentWeatherFetch(city, state, country) {
 function forecastWeatherFetch(city, state, country) {
     let url = `https://api.openweathermap.org/data/2.5/forecast?q=${city},${state},${country}&cnt=56&units=imperial&appid=${forecastId}`
     fetch(url)
-        .then(response => response.json())
-        // .then(data => localStorage.setItem('apiResponseFutureObject', JSON.stringify(data)))
-        .then(data => assignFutureWeatherData(data));// => localStorage.setItem('apiResponseObject', JSON.stringify(data)))
+    .then((response) => {
+        if (response.ok) {
+            console.log(response)
+            return response.json();
+        } else {
+            console.log(response)
+            errorModal()
+        }
+    })
+    .then((data) => assignFutureWeatherData(data));
 }
 
 function UVFetch(lat,lon) {
@@ -123,11 +145,6 @@ function UVFetch(lat,lon) {
         // .then(data => localStorage.setItem('UVIndexObject', JSON.stringify(data)));
         .then(data => assignUVData(data));// => localStorage.setItem('apiResponseObject', JSON.stringify(data)))
 }
-
-
-// Decoded Items from API Response
-
-
 
 // CURRENT Weather Function//
 function assignCurrentWeatherData(response) {

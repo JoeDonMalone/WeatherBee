@@ -212,3 +212,9 @@ align-items: center;
     max-width: 100%;
     padding: 0 15px;
   }
+
+/* .btn {
+    visibility: hidden;
+    height: 0;
+    width: 0;
+} */
