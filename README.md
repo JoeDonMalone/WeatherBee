@@ -16,7 +16,7 @@
 ## Credits
  - [OpenWeatherMap]('https://www.openweathermap.org/api')
 ## License
- - Licensed under the [MIT]('.\Assets\license.txt') license.
+ - Licensed under the [MIT]('./Assets/license.txt') license.
 ## Badges
  - NA
 ## Features
