@@ -14,7 +14,7 @@
 ## Usage
  - Anyone can use this application, but it only has access to cities within the US.
 ## Credits
- - openweathermap.org/api
+ - [OpenWeatherMap]('https://www.openweathermap.org/api')
 ## License
  - Licensed under the [MIT]('./license.txt') license.
 ## Badges
