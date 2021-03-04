@@ -127,10 +127,8 @@ function forecastWeatherFetch(city, state, country) {
     fetch(url)
     .then((response) => {
         if (response.ok) {
-            console.log(response)
             return response.json();
         } else {
-            console.log(response)
             errorModal()
         }
     })
