@@ -67,19 +67,19 @@ function initializeRecentSearches() {
 //     })
 // }
 
-function assignRecentSearches () {
+function assignRecentSearches() {
     let recentSearches = JSON.parse(localStorage.getItem('Recent Searches'));
     $('.recent-city').each(function (i) {
-    let li = (recentSearches.length-(i+1));
-    let item = recentSearches[li]['search'];
-    let city = item.city.toUpperCase();
-    let state = item.state.toUpperCase();
-    if(city === "NONE") {
-        $(this).addClass('hidden');
-    } else {
-        $(this).text(`${city}, ${state}`);
-        $(this).addClass('visible');
-    }    
+        let li = (recentSearches.length - (i + 1));
+        let item = recentSearches[li]['search'];
+        let city = item.city.toUpperCase();
+        let state = item.state.toUpperCase();
+        if (city === "NONE") {
+            $(this).addClass('hidden');
+        } else {
+            $(this).text(`${city}, ${state}`);
+            $(this).addClass('visible');
+        }
     })
 }
 
@@ -107,8 +107,8 @@ $('.recent-city').mouseleave(function () {
 $(".recent-city").click(function (e) {
     let searchCity = $(this).text();
     let cityStateArray = strictFormat([searchCity]);
-    let city = cityStateArray[0].toLowerCase();
-    let state = cityStateArray[1].toLowerCase();
+    let city = cityStateArray[0].toLowerCase().trim();
+    let state = cityStateArray[1].toLowerCase().trim();
     let country = 'USA';
     currentWeatherFetch(city, state, country);
     forecastWeatherFetch(city, state, country);
@@ -122,8 +122,8 @@ $(".recent-city").click(function (e) {
 searchCityButton.addEventListener('click', function () {
     let searchString = document.querySelector('#searchBar').value;
     let cityStateArray = strictFormat([searchString]);
-    let city = cityStateArray[0];
-    let state = cityStateArray[1];
+    let city = cityStateArray[0].trim();
+    let state = cityStateArray[1].trim();
     let country = 'USA';
     currentWeatherFetch(city, state, country);
     forecastWeatherFetch(city, state, country);
@@ -155,12 +155,10 @@ function forecastWeatherFetch(city, state, country) {
 }
 
 function UVFetch(lat, lon) {
-    // url = `api.openweathermap.org/data/2.5/weather?q=,,&appid=`;
     let url = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${uvId}`
     fetch(url)
         .then(response => response.json())
-        // .then(data => localStorage.setItem('UVIndexObject', JSON.stringify(data)));
-        .then(data => assignUVData(data));// => localStorage.setItem('apiResponseObject', JSON.stringify(data)))
+        .then(data => assignUVData(data));
 }
 
 // CURRENT Weather Function//
@@ -225,16 +223,16 @@ function assignFutureWeatherData(response) {
 function strictFormat(arr) {
     // The user entry needs to be separated and formatted for fetch needs
     var newArr = arr[0].split(/(\s+)/);
-    console.log("pre-filtered spaces Array: ",newArr)
     // remove any extra spaces that may be surrounding text
-    newArr = newArr.filter(function (entry) { return entry.trim() != ''; });
-    console.log("filtered spaces Array:",newArr)
+    // newArr = newArr.filter(function (entry) { return entry.trim() != ''; });
     // remove any commas that user may have inadvertently typed
     var strippedArr = [];
+
     for (let i = 0; i < newArr.length; i++) {
         let items = newArr[i].replace(',', '');
         strippedArr.push(items);
     };
+
     // Resolve city names with spaces between them & return the formatted array for use with 'fetch' function
     var finalArr = [];
     for (let i = 0; i < strippedArr.length - 1; i++) {
@@ -246,6 +244,5 @@ function strictFormat(arr) {
         }
     }
     finalArr.push(strippedArr[(strippedArr.length - 1)]);
-    console.log(finalArr)
     return finalArr;
 }
