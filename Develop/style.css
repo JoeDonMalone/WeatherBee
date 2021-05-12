@@ -24,7 +24,7 @@ header {
 
 .parent-flex-container-row {
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     flex-wrap: wrap;
     background-image: url(../Assets/Images/cumulus-cloud.jpg);
     /* background-image: url(../Assets/video/Clouds_1_1.mov); */
