@@ -5,8 +5,8 @@
 )
 
 # Viewed Here:
-- Pages: https://joedonmalone.github.io/WeatherApp_6_01302021/
-- github: https://github.com/JoeDonMalone/WeatherApp_6_01302021
+- Pages: https://joedonmalone.github.io/WeatherBee/
+- github: https://github.com/JoeDonMalone/WeatherBee
 
 ## Description
 - I built this application as a means to assist in gather current and future weather data in a simple, friendly way, with a comfortable UI
