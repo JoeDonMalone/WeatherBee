@@ -30,6 +30,7 @@ header {
     justify-content: space-evenly;
   }
 
+
 .search-column {
     display: flex;
     flex-direction: column;

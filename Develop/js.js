@@ -100,8 +100,8 @@ $('.recent-city').mouseenter(function () {
 })
 $('.recent-city').mouseleave(function () {
     // $(this).css("border", "1px solid rgb(184,181, 181");
-    $(this).css("border", "1px solid white");
-})
+    $(this).css("border-bottom", "1px solid rgb(184, 181, 181)");
+}) 
 
 //   Recent Search Functions
 $(".recent-city").click(function (e) {
